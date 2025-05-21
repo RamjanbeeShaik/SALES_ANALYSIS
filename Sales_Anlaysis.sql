@@ -17,9 +17,9 @@ where Category='Technology'
  and Order_Date > '2020-01-01';
 
 # List the top 10 most profitable sales transactions in descending order
-select *
+select *,Unit_Profit * Sold_Quantity as `Profit`
 from sales
-order by Total_Amount desc 
+order by `Profit` desc 
 limit 10;
 
 # Find all customers whose name starts with 'J' and ends with'n'
