@@ -41,7 +41,7 @@ limit 5;
 
 # Find the total revenue,average unit cost, and total number of orders
 select sum(Total_amount) as `Total_Revenue`,
-avg(Total_amount) as `Avg_Unit_Cost`,
+avg(Unit_Cost) as `Avg_Unit_Cost`,
 count(Order_ID) as `Total_No_Orders`
 from sales;
 
@@ -57,9 +57,10 @@ group by Customer_Name
 having `Total_Price` > 50000;
 
 # Find the top 5 customers by sales revenue using DENSE_RANK()
-select Customer_Name, Total_Amount, dense_rank()
-over (order by Total_Amount desc) as denseRank
+select Customer_Name, sum(Total_Amount), dense_rank()
+over (order by sum(Total_Amount) desc) as denseRank
 from sales
+group by Customer_Name
 limit 5;
 
 
